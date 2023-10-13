@@ -59,38 +59,6 @@ void PrintDirect(Chain* p)
 
 void addValue(Chain*& list, int x, int z)
 {
-    //Chain* current = list;
-    //Chain* prev = nullptr;
-
-    //while (current != nullptr) {
-    //    if (current->data == z) {
-    //        // Создаем новый элемент x
-    //        Chain* newNode = new Chain;
-    //        newNode->data = x;
-
-    //        if (prev == nullptr) {
-    //            // Если prev равен nullptr, это означает, что мы вставляем перед первым элементом
-    //            newNode->next = current;
-    //            list = newNode;
-    //        }
-    //        else {
-    //            // Вставляем newNode перед текущим элементом
-    //            newNode->next = current;
-    //            prev->next = newNode;
-    //        }
-    //    }
-
-    //    prev = current;
-    //    current = current->next;
-    //}
-
-    //// Если элемент z был первым в списке, мы не вошли в цикл, поэтому вставляем newNode в начало
-    //if (prev == nullptr && list->data == z) {
-    //    Chain* newNode = new Chain;
-    //    newNode->data = x;
-    //    newNode->next = list;
-    //    list = newNode;
-    //}
     Chain* current = list;
     Chain* prev = nullptr;
 
@@ -131,7 +99,21 @@ int main()
         Append(&head, value);
     }
 
-    addValue(head, 5, 2);
+    if (head == NULL)
+    {
+        cout << "Список пуст";
+        return 0;
+    }
+
+    PrintDirect(head);
+
+    cout << endl << "Введите новый вставляемый элемент Х: ";
+    int x; cin >> x;
+
+    cout << "Введите значение перед которым будет вставлен элемент Х: ";
+    int z; cin >> z;
+    
+    addValue(head, x, z);
 
     PrintDirect(head);
 

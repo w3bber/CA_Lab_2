@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+#include <sstream>
 
 using namespace std;
 
@@ -131,23 +132,36 @@ int main()
 
     Chain* first = NULL;
     Chain* first1 = NULL;
-    //char c,d;
+    string line; string line1;
     int x, x1;
     cout << "Введите числа первого списка: ";
-    cin >> x;
+   /* cin >> x;
     first = ins_sorted_unrec(first, x);
     while (cin.get() != '\n')
     {
         cin >> x;
         first = ins_sorted_unrec(first, x);
         
+    }*/
+    getline(cin, line);
+    istringstream iss(line);
+    while (iss >> x)
+    {
+        first = ins_sorted_unrec(first, x);
     }
     cout << endl << "Введите числа второго списка: ";
-    cin >> x1;
+    /*cin >> x1;
     first1 = ins_sorted_unrec(first1, x1);
     while (cin.get() != '\n')
     {
         cin >> x1;
+        first1 = ins_sorted_unrec(first1, x1);
+    }*/
+    
+    getline(cin, line1);
+    istringstream iss1(line1);
+    while (iss1 >> x1)
+    {
         first1 = ins_sorted_unrec(first1, x1);
     }
 
@@ -166,5 +180,4 @@ int main()
     
     deleteList(&p);
     deleteList(&p1);
-    //deleteList(&res);
 }

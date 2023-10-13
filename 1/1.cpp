@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+#include <sstream>
 
 using namespace std;
 
@@ -88,8 +89,9 @@ int main()
     Chain* first = NULL;
     Chain* first1 = NULL;
     int x;
+    string line;
     cout << "Введите числа: ";
-    cin >> x;
+    /*cin >> x;
     first = ins_sorted_unrec(first, x);
     first1 = ins_sorted_rec(first1, x);
     while (cin.get() != '\n')
@@ -97,10 +99,28 @@ int main()
         cin >> x;
         first = ins_sorted_unrec(first, x);
         first1 = ins_sorted_rec(first1, x);
+    }*/
+    getline(cin, line);
+    istringstream iss(line);
+    
+   
+    while (iss >> x)
+    {
+        first = ins_sorted_unrec(first, x);
+        first1 = ins_sorted_rec(first1, x);
     }
+
     
     Chain* p = first;
     Chain* p1 = first1;
+
+    if (p == NULL && p1 == NULL)
+    {
+        cout << "Список пуст";
+            return 0;
+    }
+        
+
     cout << "Список, упорядоченный по неубыванию значений элементов рекурсивно: " << endl;
 
     PrintDirect(p);

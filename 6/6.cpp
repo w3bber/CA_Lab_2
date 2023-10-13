@@ -78,7 +78,7 @@ Chain* del0(Chain* first, int x)
                 // Поэтому мы устанавливаем temp на текущий элемент и удаляем его из списка
                 temp = current;
                 current = current->next;
-                delete temp;
+                
                 if (before == temp) 
                 {
                     // Если удаляемый элемент был первым в списке, обновляем указатель на первый элемент
@@ -88,6 +88,7 @@ Chain* del0(Chain* first, int x)
                 {
                     before->next = current;
                 }
+                delete temp;
             }
             else 
             {
@@ -132,9 +133,27 @@ int main()
         Append(&head, value);
     }
 
-    Chain* res = del0(head, 5);
+    if (head == NULL)
+    {
+        cout << "Список пуст";
+        return 0;
+    }
+
+    PrintDirect(head);
+
+    cout << endl << "Введите удаляемое значение: ";
+    int x;
+    cin >> x;
+
+    Chain* res = del0(head, x);
+
+    if (res == NULL)
+    {
+        cout << "Список пуст";
+        return 0;
+    }
 
     PrintDirect(res);
 
-    deleteList(&head);
+    deleteList(&res);
 }

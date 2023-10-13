@@ -88,12 +88,20 @@ Chain* deleteAfterX(Chain* first, int x)
         }
     }
 
-    // Удаление первого элемента с данными x без оператора delete
-    if (first != nullptr && first->data == x)
+    //// Удаление первого элемента с данными x без оператора delete
+    //if (first != nullptr && first->data == x)
+    //{
+    //    Chain* temp = first;
+    //    first = first->next;
+    //    delete temp; // Этот оператор delete используется здесь
+    //}
+
+    Chain* current = first;
+    while (current != nullptr)
     {
-        Chain* temp = first;
-        first = first->next;
-        delete temp; // Этот оператор delete используется здесь
+        Chain* next = current->next;
+        delete current;
+        current = next;
     }
 
     return newList;
@@ -113,21 +121,64 @@ int main()
 {
     setlocale(LC_ALL, "Russian");
 
-    Chain* head = NULL;
-
     ifstream inputFile("input.txt");
-    int value;
 
-    while (inputFile >> value)
+    string line;
+    Chain* head_1 = NULL;
+    Chain* head_2 = NULL;
+
+    if (getline(inputFile, line))
     {
-        Append(&head, value);
+        istringstream iss(line);
+        int value;
+        while (iss >> value)
+        {
+            Append(&head_1, value);
+        }
     }
 
-    Chain* res = deleteAfterX(head, 2);
+    if (getline(inputFile, line))
+    {
+        istringstream iss(line);
+        int value;
+        while (iss >> value)
+        {
+            Append(&head_2, value);
+        }
+    }
 
-    PrintReverseDirect(res);
+    inputFile.close();
 
-    deleteList(&head);
-    deleteList(&res);
+    if (head_1 == NULL)
+    {
+        cout << "Первый список пуст";
+        return 0;
+    }
+   
+    PrintDirect(head_1);
+    cout << endl;
+    PrintDirect(head_2);
+
+    cout << endl << "Введите значение после которого нужно вставить числа во второй список: ";
+    int x;
+    cin >> x;
+
+    Chain* res = deleteAfterX(head_1, x);
+
+    while (res != nullptr) {
+        Chain* newNode = new Chain();
+        newNode->data = res->data;
+        newNode->next = head_2;
+
+        head_2 = newNode;
+        res = res->next;    
+    }
+
+    cout << endl;
+    PrintDirect(head_1);
+    
+    cout << "Полученный список: ";
+    PrintDirect(head_2);
+
 }
 

@@ -126,10 +126,26 @@ int main()
         Append(&head, value);
     }
 
-    pair<Chain*, Chain*> res = createNewLists(head);
+    if (head == NULL)
+    {
+        cout << "Список пуст";
+        return 0;
+    }
 
-    PrintDirect(res.first);
+    PrintDirect(head);
     cout << endl;
+
+    pair<Chain*, Chain*> res = createNewLists(head);
+    cout << "Неотрицательные: ";
+    if(res.first == NULL)
+        cout << "Список пуст";
+    PrintDirect(res.first);
+    cout << endl << "Отрицательные: ";
+    if(res.second == NULL)
+        cout << "Список пуст";
     PrintDirect(res.second);
+
+    deleteList(&res.first);
+    deleteList(&res.second);
 }
 

@@ -99,6 +99,8 @@ Chain* sumList(Chain* List_1, Chain* List_2)
 
 int main()
 {
+    setlocale(LC_ALL, "Russian");
+    
     ifstream inputFile("input.txt");
 
     string line;
@@ -127,8 +129,18 @@ int main()
 
     inputFile.close();
 
+    if (head_1 == NULL && head_2 == NULL)
+    {
+        cout << "Списки пусты";
+        return 0;
+    }
+
     Chain* res = sumList(head_1, head_2);
-    cout << endl;
+
     PrintDirect(res);
+
+    deleteList(&head_1);
+    deleteList(&head_2);
+    deleteList(&res);
 }
 
