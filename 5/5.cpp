@@ -88,22 +88,6 @@ Chain* deleteAfterX(Chain* first, int x)
         }
     }
 
-    //// Удаление первого элемента с данными x без оператора delete
-    //if (first != nullptr && first->data == x)
-    //{
-    //    Chain* temp = first;
-    //    first = first->next;
-    //    delete temp; // Этот оператор delete используется здесь
-    //}
-
-    Chain* current = first;
-    while (current != nullptr)
-    {
-        Chain* next = current->next;
-        delete current;
-        current = next;
-    }
-
     return newList;
 }
 
@@ -154,7 +138,13 @@ int main()
         cout << "Первый список пуст";
         return 0;
     }
-   
+
+    if (head_2 == NULL)
+    {
+        cout << "Второй список пуст";
+        return 0;
+    }
+
     PrintDirect(head_1);
     cout << endl;
     PrintDirect(head_2);
@@ -165,20 +155,19 @@ int main()
 
     Chain* res = deleteAfterX(head_1, x);
 
-    while (res != nullptr) {
+    while (res != nullptr) 
+    {
         Chain* newNode = new Chain();
         newNode->data = res->data;
         newNode->next = head_2;
 
         head_2 = newNode;
-        res = res->next;    
+        res = res->next;
     }
 
-    cout << endl;
+    cout << "Первый список: " << endl;
     PrintDirect(head_1);
-    
-    cout << "Полученный список: ";
+
+    cout << endl << "Полученный список: " << endl;
     PrintDirect(head_2);
-
 }
-
