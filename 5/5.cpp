@@ -133,21 +133,29 @@ int main()
 
     inputFile.close();
 
+    
+    
     if (head_1 == NULL)
     {
-        cout << "Первый список пуст";
+        cout << "Первый список пуст" << endl;
         return 0;
     }
 
-    if (head_2 == NULL)
-    {
-        cout << "Второй список пуст";
-        return 0;
-    }
+    
+
+    
 
     PrintDirect(head_1);
     cout << endl;
-    PrintDirect(head_2);
+    if (head_2 == NULL)
+    {
+        cout << "Второй список пуст" << endl;
+    }
+    else
+    {
+        PrintDirect(head_2);
+    }
+    
 
     cout << endl << "Введите значение после которого нужно вставить числа во второй список: ";
     int x;
@@ -169,5 +177,13 @@ int main()
     PrintDirect(head_1);
 
     cout << endl << "Полученный список: " << endl;
-    PrintDirect(head_2);
+    if (head_2 == NULL)
+    {
+        cout << "Второй список пуст" << endl;
+    }
+    else
+    {
+        PrintDirect(head_2);
+    }
+    //PrintDirect(head_2);
 }
